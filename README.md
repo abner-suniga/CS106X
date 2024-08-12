@@ -1,7 +1,7 @@
 # CS106X: Programming Abstractions in C++
 
-[CS 106X: Programming Abstractions (Accelerated), Autumn 2017](https://web.stanford.edu/class/archive/cs/cs106x/cs106x.1182/)
-[CS106X: Programming Abstractions in C++ Autumn 2019](https://web.stanford.edu/class/cs106x/)
+- [CS 106X: Programming Abstractions (Accelerated), Autumn 2017](https://web.stanford.edu/class/archive/cs/cs106x/cs106x.1182/)
+- [CS106X: Programming Abstractions in C++ Autumn 2019](https://web.stanford.edu/class/cs106x/)
 
 
 - C++, used for systems programming, high speed / efficiency
