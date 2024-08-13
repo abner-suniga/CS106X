@@ -5,6 +5,8 @@
 
 ---
 
+# Lecture 1
+
 - C++, used for systems programming, high speed / efficiency
 - `.cpp` and `.h` header files
 - `.cpp` -> object file (platform dependent) + libraries -> executable
@@ -16,14 +18,14 @@ int main () {
 }
 ```
 
-# Imports
+## Imports
 
 ```cpp
 #include <library> // system library
 #include "library.h" // local library
 ```
 
-# Namespace
+## Namespace
 
 Avoid name collisions
 
@@ -36,13 +38,15 @@ using namespace std;
 cout << endl;
 ```
 
-# `cout` and `cin`
+## `cout` and `cin`
 
 Why `cin` is bad? 
 - Hard to detect invalid inputs
 - Hard to read strings
 
-# Functions 
+# Lecture 2
+
+## Functions 
 
 Functions must be declared before used. Prototypes can be used in solve that.
 
@@ -58,7 +62,7 @@ void swap(int& a, int& b) {
 }
 ```
 
-# String
+## String
 
 Strings are mutable
 
@@ -70,9 +74,14 @@ string("text"); // c str -> c++ str
 string.c_str(); // c++ str -> c str
 ```
 
-# Streams
+I did some C++ coding execises, just to get more familiar with the syntax.
+Everything is in the LEC2 folder.
+
+# Lecture 3
+
+## Streams
 
 Read and write files
 
-# Grids
+## Grids
 
