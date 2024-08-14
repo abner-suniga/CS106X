@@ -11,19 +11,20 @@
 g++ -std=c++11 -o game_of_life game_of_life.cpp
 ```
 
-You can pass a starter file
+You create a random game of life
+```
+./game_of_life 
+
+```
+
+Or create based on a file
 ```
 ./game_of_life files/Glider
 
 ```
 
-Or create random game of life
-```
-./game_of_life files/Glider
+<img src="./2019/game_of_life/game_of_life.gif" width="100">
 
-```
-
-![Game of Life](./2019/game_of_life/game_of_life.gif)
 
 ---
 
