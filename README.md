@@ -7,6 +7,22 @@
 
 ## Game of Life
 
+```
+g++ -std=c++11 -o game_of_life game_of_life.cpp
+```
+
+You can pass a starter file
+```
+./game_of_life files/Glider
+
+```
+
+Or create random game of life
+```
+./game_of_life files/Glider
+
+```
+
 ![Game of Life](./2019/game_of_life/game_of_life.gif)
 
 ---
