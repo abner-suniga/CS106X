@@ -1,4 +1,5 @@
 #include <chrono>
+#include <fstream>
 #include <iostream>
 #include <random>
 #include <thread>
@@ -21,7 +22,7 @@ void displayGrid(vector<vector<int>> &grid) {
   }
 
   cout << endl;
-  this_thread::sleep_for(chrono::milliseconds(50));
+  this_thread::sleep_for(chrono::milliseconds(250));
 }
 
 int isValidCell(vector<vector<int>> &grid, int row, int column) {
@@ -57,13 +58,13 @@ void updateGrid(vector<vector<int>> &grid, vector<vector<int>> &newGrid) {
         if (grid[row][column] == 0) {
           newGrid[row][column] = grid[row][column];
         } else {
-          newGrid[row][column] = grid[row][column]++;
+          newGrid[row][column] = grid[row][column] + 1;
         }
       } else if (numberOfNeightbors == 3) {
         if (grid[row][column] == 0) {
           newGrid[row][column] = 1;
         } else {
-          newGrid[row][column] = grid[row][column]++;
+          newGrid[row][column] = grid[row][column] + 1;
         }
       } else if (numberOfNeightbors >= 4) {
         newGrid[row][column] = 0;
@@ -97,7 +98,7 @@ bool isGridStable(vector<vector<int>> &grid, vector<vector<int>> &newGrid,
           grid[row][column] == 0 && newGrid[row][column] > 0) {
         return false;
       }
-      if (newGrid[row][column] < MAX_AGE) {
+      if (newGrid[row][column] != 0 && newGrid[row][column] < MAX_AGE) {
         return false;
       }
     }
@@ -106,19 +107,8 @@ bool isGridStable(vector<vector<int>> &grid, vector<vector<int>> &newGrid,
   return true;
 }
 
-int main() {
-
-  int MAX_COLUMNS = 40;
-  int MAX_ROWS = 40;
-  int MAX_AGE = 100;
-
-  vector<int> line(MAX_COLUMNS, 0);
-  vector<vector<int>> grid(MAX_ROWS, line);
-  vector<vector<int>> newGrid(MAX_ROWS, line);
-
-  initRandomGrid(grid, MAX_AGE);
-  initRandomGrid(newGrid, MAX_AGE);
-
+void gameOfLifeLoop(vector<vector<int>> &grid, vector<vector<int>> &newGrid,
+                    int MAX_AGE) {
   do {
     grid = newGrid;
 
@@ -127,6 +117,65 @@ int main() {
     updateGrid(grid, newGrid);
 
   } while (!isGridStable(grid, newGrid, MAX_AGE));
+}
+
+int main(int argc, char *argv[]) {
+
+  int MAX_AGE = 100;
+  int MAX_ROWS = 40;
+  int MAX_COLUMNS = 40;
+
+  if (argc == 2) {
+    ifstream file;
+    file.open(argv[1]);
+
+    string line;
+    while (getline(file, line)) {
+      if (line.at(0) != '#') {
+        break;
+      }
+    }
+
+    MAX_ROWS = stoi(line);
+    getline(file, line);
+    MAX_COLUMNS = stoi(line);
+
+    vector<int> gridLine(MAX_COLUMNS, 0);
+    vector<vector<int>> grid(MAX_ROWS, gridLine);
+    vector<vector<int>> newGrid(MAX_ROWS, gridLine);
+
+    int row = 0;
+    while (getline(file, line)) {
+      for (int col = 0; col < line.length(); col++) {
+        if (line[col] == 'X') {
+          grid[row][col] = 1;
+          newGrid[row][col] = 1;
+        }
+      }
+      row++;
+    }
+
+    file.close();
+
+    gameOfLifeLoop(grid, newGrid, MAX_AGE);
+
+  } else {
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distr(40, 60);
+
+    MAX_ROWS = distr(gen);
+    MAX_COLUMNS = distr(gen);
+
+    vector<int> gridLine(MAX_COLUMNS, 0);
+    vector<vector<int>> grid(MAX_ROWS, gridLine);
+    vector<vector<int>> newGrid(MAX_ROWS, gridLine);
+
+    initRandomGrid(grid, MAX_AGE);
+    initRandomGrid(newGrid, MAX_AGE);
+
+    gameOfLifeLoop(grid, newGrid, MAX_AGE);
+  }
 
   return 0;
 }
