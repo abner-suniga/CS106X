@@ -23,7 +23,7 @@ Or create based on a file
 
 ```
 
-<img src="./2019/game_of_life/game_of_life.gif" width="100">
+<img src="./2019/game_of_life/game_of_life.gif" width="250">
 
 
 ---
