@@ -2,6 +2,7 @@
 
 - [CS 106X: Programming Abstractions (Accelerated), Autumn 2017](https://web.stanford.edu/class/archive/cs/cs106x/cs106x.1182/)
 - [CS106X: Programming Abstractions in C++ Autumn 2019](https://web.stanford.edu/class/cs106x/)
+- [Video Lectures - CS106X: Programming Abstractions in C++ Autumn 2017](https://www.youtube.com/playlist?list=PLoCMsyE1cvdVmbGH6Jp-9twXPbi5J_IBT)
 
 # Assignments
 
@@ -106,5 +107,21 @@ Everything is in the LEC2 folder.
 
 Read and write files
 
+# Lecture 4
+
 ## Grids
 
+In the course, the `Grid` class from the stanford library is used but I'm using
+a `vector` from the standard lib
+
+```cpp
+vector<vector<int>> grid 
+```
+
+The grid is automatically passed by value:
+- C++ makes a copy of its contents, but this is slow. You should pass by reference with `&`, example: `int sum(Grid<int>& grid)`
+- If the code won't modify the grid pass as `const`, example: `int sum(const Grid<int>& grid)`
+
+## Big-oh
+
+# Lecture 5
