@@ -125,3 +125,6 @@ The grid is automatically passed by value:
 ## Big-oh
 
 # Lecture 5
+
+# Lecture 6
+
